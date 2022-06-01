@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Hello ClasseController!
+    
     
 {% endblock %}
 
 {% block body %}
-
-    <div class="container">
+<div class="container">
+           <h1>liste classe</h1>
         <table class="table">
             <thead>
 
@@ -36,10 +36,21 @@
                         <td>
                             {{ classe.filiere }}
                         </td>
+                        <td>
+                            
+                        <button type="button" class="btn btn-primary">Primary</button>
+                    <button type="button" class="btn btn-secondary">Secondary</button>
+                    <button type="button" class="btn btn-success">Success</button>
+                        </td>
                     </tr>
-
+              
                 {% endfor %}
             </tbody>
         </table>
+        <div class="d-flex justify-content-center">
+{% do last.setPageRange(10) %}
+{{knp_pagination_render(last,'pagination.html.twig')}}
+</div>
     </div>
+  
 {% endblock %}
