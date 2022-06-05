@@ -6,12 +6,16 @@
 {% endblock %}
 
 {% block body %}
+  
 <div class="container">
-           <h1>liste classe</h1>
+         
         <table class="table">
+               <h1>liste classe</h1>  
+                   
             <thead>
-
+            
                 <tr>
+                    
                     <th>
                         libelle classe
                     </th>
@@ -24,11 +28,13 @@
                 </tr>
             </thead>
             <tbody>
-                {% for classe in last %}
-
-                    <tr>
+                
+                {%  for  classe in last %}
+               
+                <tr> 
+  
                         <td scope="row">
-                            {{ classe.libelleclasse }}
+                            {{ classe.libelleclasse }}{{classe.id}}
                         </td>
                         <td>
                             {{ classe.niveau }}
@@ -37,20 +43,28 @@
                             {{ classe.filiere }}
                         </td>
                         <td>
-                            
-                        <button type="button" class="btn btn-primary">Primary</button>
-                    <button type="button" class="btn btn-secondary">Secondary</button>
-                    <button type="button" class="btn btn-success">Success</button>
+                            <a name="" id="" class="btn btn-danger" href=" {{path ('classe_delete',{"id":classe.id}) }} " role="button">supprimer</a>
+                        <a name="" id="" class="btn btn-primary" href="{{path ('classe_edit',{"id":classe.id}) }} " role="button">modifier</a>
+
+                 
                         </td>
                     </tr>
+            
               
                 {% endfor %}
+
             </tbody>
+
         </table>
         <div class="d-flex justify-content-center">
 {% do last.setPageRange(10) %}
 {{knp_pagination_render(last,'pagination.html.twig')}}
+
+
+
 </div>
+
+
     </div>
   
 {% endblock %}
