@@ -3,12 +3,16 @@
 namespace App\Controller;
 use App\Entity\Classe;
 use App\Form\FormType;
+// Doctrine\Common\Persistence\ObjectManager: '@doctrine.orm.default_entity_manager'
 use App\Repository\ClasseRepository;
+
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Loader\Configurator\form;
 
@@ -27,6 +31,39 @@ class ClasseController extends AbstractController
             
         ]);
     }
+
+
+
+    /** 
+    *@route("/classe/ajouter",name="classe_aj");
+    *
+    *@return Response;
+    */
+
+    public function ajouter(Request $request,ManagerRegistry $registry,ClasseRepository $class)
+    { 
+          $classe=new Classe();
+        $form=$this->createFormBuilder($classe)
+                   ->add('libelleclasse')
+                   ->add('niveau')
+                   ->add('filiere')
+                   ->add('validez', SubmitType::class)
+                   ->getForm();
+        $form->handleRequest($request);
+
+                   if ($form->isSubmitted() && $form->isValid()) {
+                     $class ->add($form->getData(),true);
+
+                }
+                   return $this->render('classe/add.html.twig', [
+                    'form' => $form->createView()
+                ]);    
+
+
+    }   
+    
+
+
     /** 
     *@route("/delete/{id}",name="classe_delete");
     *
@@ -56,33 +93,14 @@ class ClasseController extends AbstractController
             $class ->add( $form->getData(),true);
         }
 
-        return $this->render('classe/add.html.twig', [
+        return $this->render('classe/modif.html.twig', [
             'form' => $form->createView()
         ]);
 
 
 
     }
-       /** 
-    *@route("/classe/plus",name="classe_plus");
-    *
-    *@return Response;
-    */
-
-    // public function plus(classe $classe, ClasseRepository $classeRepository)
-    // { 
-    //     // $this->getEntityManager()->persist($entity);
-
-    //     // if ($flush) {
-    //     //     $this->getEntityManager()->flush();
-    //     // }
-    //     $classeRepository->add($classe,true);
-      
-
-    //     //  return new Response("classe supprimer");
-    //   return new Response($this->redirectToRoute("app_classe"));
-    // }   
-    
+   
         
 
 

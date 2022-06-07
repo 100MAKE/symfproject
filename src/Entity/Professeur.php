@@ -59,4 +59,8 @@ class Professeur extends Personne
 
         return $this;
     }
+    public function tostring():string{
+return $this->getNomComplet;
+
+    }
 }
