@@ -16,6 +16,8 @@ class Module
     #[ORM\Column(type: 'string', length: 200)]
     private $libellemodule;
 
+ 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -32,4 +34,6 @@ class Module
 
         return $this;
     }
+
+   
 }

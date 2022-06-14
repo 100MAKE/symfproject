@@ -9,7 +9,7 @@
   
 <div class="container">
 <table class="table">
-<h1>liste classe</h1>  
+{# <h1>liste classe</h1>  #}
 <a name="" id="" class="btn btn-success" href="{{ path('classe_aj') }}" role="button">Ajout Classe</a>
     
             <thead>
@@ -44,7 +44,7 @@
                         </td>
                         <td>
                             <a name="" id="" class="btn btn-danger" href=" {{path ('classe_delete',{"id":classe.id}) }} " role="button">supprimer</a>
-                        <a name="" id="" class="btn btn-primary" href="{{path ('classe_edit',{"id":classe.id}) }} " role="button">modifier</a>
+                        <a name="" id="" class="btn btn-primary" href="{{path ('classe_modif',{"id":classe.id}) }} " role="button">modifier</a>
 
                  
                         </td>

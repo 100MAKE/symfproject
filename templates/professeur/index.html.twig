@@ -1,20 +1,86 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfesseurController!{% endblock %}
+{% block title %}
+    
+    
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+  
+<div class="container">
+<table class="table">
+<h1>liste Professeur</h1>  
+    
+            <thead>
+            
+                <tr>
+                    
+                    <th>
+                        Nom Complet
+                    </th>
+                    <th>
+                        Grade
+                    </th>
+                    <th>
+                        Ses classes
+                    </th>
+                    <th>
+                        Supprimer
+                    </th>
+                    <th>
+                        Modifier
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {%  for  professeur in prof %}
+               
+                <tr> 
+  
+                        <td scope="row">
+                        {{ professeur.nomcomplet }}
+                        </td>
+                        <td>
+                            {{ professeur.grade }}
+                           
+                        </td>
+                        <td>
+                        {# <a href="{{path('classe_lc',{id:professeur.id})}}">Ses Classes</a> #}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+                    
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/opt/lampp/htdocs/symfproject/src/Controller/ProfesseurController.php'|file_link(0) }}">src/Controller/ProfesseurController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/opt/lampp/htdocs/symfproject/templates/professeur/index.html.twig'|file_link(0) }}">templates/professeur/index.html.twig</a></code></li>
-    </ul>
-</div>
+                        </td>
+                        <td>
+                        <a name="" id="" class="btn btn-danger" href="" >Modifier</a>
+
+                    
+
+                        </td>
+                        <td>
+                            <a name="" id="" class="btn btn-danger" href=" {{path ('prof_delete',{"id":professeur.id}) }} " role="button">supprimer</a>
+
+
+                    
+
+                        </td>
+                       
+                        
+                        
+                      
+                    </tr>
+            
+              
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+
+
+
+    </div>
+  
 {% endblock %}

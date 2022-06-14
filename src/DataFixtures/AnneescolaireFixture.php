@@ -18,5 +18,6 @@ class AnneescolaireFixture extends Fixture
             $manager->persist($data);
             $this->addReference("Anneescolaire".$i, $data);
     }
+    $manager->flush();
 }
 }

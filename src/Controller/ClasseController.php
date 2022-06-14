@@ -3,7 +3,6 @@
 namespace App\Controller;
 use App\Entity\Classe;
 use App\Form\FormType;
-// Doctrine\Common\Persistence\ObjectManager: '@doctrine.orm.default_entity_manager'
 use App\Repository\ClasseRepository;
 
 use Doctrine\Persistence\ObjectManager;
@@ -35,14 +34,19 @@ class ClasseController extends AbstractController
 
 
     /** 
-    *@route("/classe/ajouter",name="classe_aj");
+    *@route("/classe/ajmodif",name="classe_aj");
+     *@route("/classe/ajmodif/{id}",name="classe_modif");
     *
     *@return Response;
     */
+   
 
-    public function ajouter(Request $request,ManagerRegistry $registry,ClasseRepository $class)
+    public function ajmodif(Classe $classe=null , Request $request,ClasseRepository $class)
     { 
-          $classe=new Classe();
+        if ($classe==null) {
+            $classe=new Classe();
+        }
+        
         $form=$this->createFormBuilder($classe)
                    ->add('libelleclasse')
                    ->add('niveau')
@@ -75,31 +79,31 @@ class ClasseController extends AbstractController
       
 
         //  return new Response("classe supprimer");
-      return new Response($this->redirectToRoute("app_classe"));
+      return $this->redirectToRoute("app_classe");
 
     }
-       /** 
-    *@route("/classe/edit/{id}",name="classe_edit");
-    *
-    *@return Response;
-    */
-    public function edit($id ,ClasseRepository $class,Request $request){
+    //    /** 
+    // *@route("/classe/edit/{id}",name="classe_edit");
+    // *
+    // *@return Response;
+    // */
+    // public function edit($id ,ClasseRepository $class,Request $request){
         
 
-        $classe = $class->find($id);
-        $form = $this->createForm(FormType::class, $classe);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $class ->add( $form->getData(),true);
-        }
+    //     $classe = $class->find($id);
+    //     $form = $this->createForm(FormType::class, $classe);
+    //     $form->handleRequest($request);
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $class ->add( $form->getData(),true);
+    //     }
 
-        return $this->render('classe/modif.html.twig', [
-            'form' => $form->createView()
-        ]);
+    //     return $this->render('classe/modif.html.twig', [
+    //         'form' => $form->createView()
+    //     ]);
+
+    // }
 
 
-
-    }
    
         
 
